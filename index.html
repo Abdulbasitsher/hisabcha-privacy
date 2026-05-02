@@ -1,207 +1,811 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Privacy Policy – Hisabcha</title>
+  <title>Hisabcha – Privacy & Data</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green:       #16a34a;
+      --green-dark:  #15803d;
+      --green-deep:  #14532d;
+      --green-light: #dcfce7;
+      --green-pale:  #f0fdf4;
+      --red:         #dc2626;
+      --red-dark:    #b91c1c;
+      --red-pale:    #fef2f2;
+      --amber:       #d97706;
+      --amber-pale:  #fffbeb;
+      --blue-pale:   #eff6ff;
+      --blue:        #1d4ed8;
+      --ink:         #111827;
+      --muted:       #6b7280;
+      --border:      #e5e7eb;
+      --surface:     #ffffff;
+      --bg:          #f8fafc;
+      --nav-h:       60px;
+      --radius:      16px;
+      --shadow:      0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.05);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #f9fafb;
-      color: #1f2937;
-      padding: 0;
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
     }
-    header {
-      background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
-      color: white;
-      padding: 40px 24px 32px;
-      text-align: center;
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 99px; }
+
+    /* ════════════════════════════════════════
+       NAV
+    ════════════════════════════════════════ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center;
+      padding: 0 28px;
+      z-index: 1000;
+      gap: 16px;
     }
-    header h1 { font-size: 28px; font-weight: 700; margin-bottom: 6px; }
-    header p  { font-size: 14px; opacity: 0.85; }
-    .container {
-      max-width: 800px;
-      margin: 32px auto;
-      padding: 0 20px 60px;
+
+    .nav-brand {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none;
+      flex-shrink: 0;
     }
-    .card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-      padding: 32px;
-      margin-bottom: 20px;
-    }
-    h2 {
+    .nav-logo {
+      width: 34px; height: 34px;
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
       font-size: 17px;
-      font-weight: 700;
-      color: #15803d;
-      margin-bottom: 12px;
+      box-shadow: 0 2px 8px rgba(22,163,74,0.35);
+    }
+    .nav-wordmark {
+      font-family: 'Sora', sans-serif;
+      font-weight: 800;
+      font-size: 17px;
+      color: var(--ink);
+      letter-spacing: -0.3px;
+    }
+    .nav-wordmark span { color: var(--green); }
+
+    .nav-tabs {
       display: flex;
-      align-items: center;
-      gap: 8px;
+      background: #f3f4f6;
+      border-radius: 10px;
+      padding: 3px;
+      gap: 2px;
+      margin-left: auto;
     }
-    h2::before {
+    .nav-tab {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      background: transparent;
+      border: none;
+      padding: 7px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .nav-tab:hover { color: var(--ink); }
+    .nav-tab.active {
+      background: var(--surface);
+      color: var(--ink);
+      font-weight: 600;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+
+    /* ════════════════════════════════════════
+       PAGES
+    ════════════════════════════════════════ */
+    .page { display: none; padding-top: var(--nav-h); }
+    .page.active { display: block; }
+
+    /* ════════════════════════════════════════
+       HERO
+    ════════════════════════════════════════ */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 72px 28px 64px;
+      text-align: center;
+    }
+
+    .hero-privacy {
+      background: linear-gradient(160deg, var(--green-deep) 0%, var(--green-dark) 50%, #1a7a42 100%);
+    }
+    .hero-delete {
+      background: linear-gradient(160deg, #7f1d1d 0%, var(--red-dark) 50%, var(--red) 100%);
+    }
+
+    /* dot-grid overlay */
+    .hero::before {
       content: '';
-      display: inline-block;
-      width: 4px;
-      height: 18px;
-      background: #16a34a;
-      border-radius: 2px;
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.12) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
     }
-    p, li { font-size: 15px; line-height: 1.75; color: #374151; }
+    /* glow blob */
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      top: -200px; right: -150px;
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(26px, 5vw, 40px);
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.5px;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+    .hero p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.8);
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.9);
+      font-size: 13px; font-weight: 500;
+      padding: 6px 14px; border-radius: 99px;
+      margin-top: 24px;
+    }
+
+    /* ════════════════════════════════════════
+       CONTENT AREA
+    ════════════════════════════════════════ */
+    .content {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 32px 20px 80px;
+    }
+
+    /* ════════════════════════════════════════
+       CARDS
+    ════════════════════════════════════════ */
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      padding: 28px 30px;
+      margin-bottom: 16px;
+      animation: fadeUp 0.4s ease both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .card:nth-child(2)  { animation-delay: 0.05s; }
+    .card:nth-child(3)  { animation-delay: 0.10s; }
+    .card:nth-child(4)  { animation-delay: 0.15s; }
+    .card:nth-child(5)  { animation-delay: 0.20s; }
+    .card:nth-child(6)  { animation-delay: 0.25s; }
+    .card:nth-child(7)  { animation-delay: 0.30s; }
+    .card:nth-child(8)  { animation-delay: 0.35s; }
+    .card:nth-child(9)  { animation-delay: 0.40s; }
+    .card:nth-child(10) { animation-delay: 0.45s; }
+
+    .card-head {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 14px;
+    }
+    .card-icon {
+      width: 38px; height: 38px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 19px; flex-shrink: 0;
+    }
+    .ci-green  { background: var(--green-pale); }
+    .ci-red    { background: var(--red-pale); }
+    .ci-amber  { background: var(--amber-pale); }
+    .ci-blue   { background: var(--blue-pale); }
+
+    .card h2 {
+      font-family: 'Sora', sans-serif;
+      font-size: 15px; font-weight: 700;
+      color: var(--ink);
+    }
+
+    p, li {
+      font-size: 14.5px;
+      line-height: 1.8;
+      color: #374151;
+    }
     ul { padding-left: 20px; margin-top: 8px; }
-    li { margin-bottom: 6px; }
-    .highlight {
-      background: #f0fdf4;
-      border-left: 4px solid #16a34a;
-      padding: 14px 18px;
-      border-radius: 0 8px 8px 0;
-      margin-top: 12px;
-      font-size: 14px;
-      color: #166534;
-    }
-    .updated {
-      font-size: 13px;
-      color: #6b7280;
-      text-align: center;
-      margin-bottom: 24px;
-    }
-    a { color: #16a34a; text-decoration: none; }
+    li { margin-bottom: 5px; }
+    strong { color: var(--ink); }
+    a { color: var(--green); text-decoration: none; }
     a:hover { text-decoration: underline; }
+
+    /* ════════════════════════════════════════
+       CALLOUT BOXES
+    ════════════════════════════════════════ */
+    .callout {
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 14px;
+      line-height: 1.7;
+      display: flex; gap: 10px; align-items: flex-start;
+      margin-top: 12px;
+    }
+    .callout-icon { font-size: 17px; flex-shrink: 0; margin-top: 1px; }
+    .callout-green  { background: var(--green-pale); border: 1px solid #bbf7d0; color: #166534; }
+    .callout-amber  { background: var(--amber-pale); border: 1px solid #fde68a; color: #78350f; }
+    .callout-blue   { background: var(--blue-pale);  border: 1px solid #bfdbfe; color: #1e40af; }
+    .callout-red    { background: var(--red-pale);   border: 1px solid #fecaca; color: #991b1b; }
+
+    /* ════════════════════════════════════════
+       CTA BANNER (privacy → delete)
+    ════════════════════════════════════════ */
+    .cta-banner {
+      background: linear-gradient(135deg, #fef2f2 0%, #fff5f5 100%);
+      border: 1px solid #fecaca;
+      border-radius: var(--radius);
+      padding: 22px 26px;
+      display: flex; align-items: center; gap: 18px;
+      margin-bottom: 16px;
+      animation: fadeUp 0.4s ease both;
+    }
+    .cta-banner-icon { font-size: 38px; flex-shrink: 0; }
+    .cta-banner h3 {
+      font-family: 'Sora', sans-serif;
+      font-size: 15px; font-weight: 700; color: var(--red);
+      margin-bottom: 4px;
+    }
+    .cta-banner p  { font-size: 13.5px; color: var(--muted); margin-bottom: 10px; }
+    .btn-red {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--red); color: #fff;
+      padding: 9px 18px; border-radius: 8px;
+      font-size: 13.5px; font-weight: 600;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-red:hover { background: var(--red-dark); transform: translateY(-1px); text-decoration: none; }
+
+    /* ════════════════════════════════════════
+       STEPS
+    ════════════════════════════════════════ */
+    .steps { display: flex; flex-direction: column; gap: 14px; margin-top: 6px; }
+    .step { display: flex; gap: 14px; align-items: flex-start; }
+    .step-num {
+      width: 28px; height: 28px;
+      background: var(--red); color: #fff;
+      border-radius: 50%;
+      font-family: 'Sora', sans-serif;
+      font-weight: 700; font-size: 13px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 2px;
+    }
+    .step-body strong { display: block; font-size: 14.5px; color: var(--ink); margin-bottom: 2px; }
+    .step-body p { font-size: 13.5px; color: var(--muted); margin: 0; }
+
+    /* ════════════════════════════════════════
+       EMAIL BUTTON
+    ════════════════════════════════════════ */
+    .email-cta {
+      display: flex; align-items: center; gap: 12px;
+      background: var(--red); color: #fff;
+      padding: 15px 22px; border-radius: 12px;
+      text-decoration: none; font-weight: 600; font-size: 14.5px;
+      margin-top: 22px; width: fit-content;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 4px 12px rgba(220,38,38,0.3);
+    }
+    .email-cta:hover { background: var(--red-dark); transform: translateY(-2px); text-decoration: none; }
+    .email-cta-icon { font-size: 22px; }
+
+    /* ════════════════════════════════════════
+       DATA TABLE
+    ════════════════════════════════════════ */
+    .data-table {
+      width: 100%; border-collapse: collapse;
+      margin-top: 14px; font-size: 13.5px;
+      border-radius: 10px; overflow: hidden;
+    }
+    .data-table th {
+      background: #f9fafb; text-align: left;
+      padding: 10px 14px; font-weight: 600;
+      color: var(--muted); font-size: 12px;
+      text-transform: uppercase; letter-spacing: 0.04em;
+      border-bottom: 1px solid var(--border);
+    }
+    .data-table td {
+      padding: 11px 14px;
+      border-bottom: 1px solid #f3f4f6;
+      vertical-align: top; color: #374151;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:hover td { background: #fafafa; }
+    .badge {
+      display: inline-block; padding: 3px 10px;
+      border-radius: 99px; font-size: 11.5px; font-weight: 600;
+    }
+    .badge-del  { background: #fee2e2; color: var(--red); }
+    .badge-keep { background: #fef3c7; color: #92400e; }
+    .data-label { color: var(--muted); font-size: 12px; display: block; margin-top: 1px; }
+
+    /* ════════════════════════════════════════
+       TIMELINE
+    ════════════════════════════════════════ */
+    .timeline { display: flex; flex-direction: column; margin-top: 8px; }
+    .tl-item { display: flex; gap: 14px; position: relative; }
+    .tl-item:not(:last-child)::before {
+      content: '';
+      position: absolute; left: 13px; top: 30px;
+      width: 2px; height: calc(100% - 6px);
+      background: var(--border);
+    }
+    .tl-dot {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: #f3f4f6; border: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; flex-shrink: 0; z-index: 1;
+    }
+    .tl-body { padding-bottom: 20px; }
+    .tl-body strong { display: block; font-size: 14px; font-weight: 700; color: var(--ink); }
+    .tl-body p { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+    /* ════════════════════════════════════════
+       FOOTER
+    ════════════════════════════════════════ */
     footer {
-      text-align: center;
-      font-size: 13px;
-      color: #9ca3af;
-      padding: 20px;
+      text-align: center; font-size: 13px;
+      color: var(--muted); padding: 24px 20px;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+    }
+    footer a { color: var(--green); }
+
+    /* ════════════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════════════ */
+    @media (max-width: 600px) {
+      nav { padding: 0 16px; }
+      .nav-wordmark { display: none; }
+      .hero { padding: 52px 20px 44px; }
+      .card { padding: 20px 18px; }
+      .cta-banner { flex-direction: column; gap: 12px; }
+      .cta-banner-icon { display: none; }
+      .data-table th:last-child,
+      .data-table td:last-child { display: none; }
+      .email-cta { font-size: 13px; padding: 13px 18px; width: 100%; justify-content: center; }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>🔒 Privacy Policy</h1>
-  <p>Hisabcha – Smart Inventory & POS for Shopkeepers</p>
-</header>
+<!-- ════════════════════════════════════════
+     NAV
+════════════════════════════════════════ -->
+<nav>
+  <a class="nav-brand" href="#" onclick="showPage('privacy')">
+    <div class="nav-logo">🌿</div>
+    <span class="nav-wordmark">Hisab<span>cha</span></span>
+  </a>
+  <div class="nav-tabs">
+    <button class="nav-tab active" id="tab-privacy" onclick="showPage('privacy')">🔒 Privacy Policy</button>
+    <button class="nav-tab"        id="tab-delete"  onclick="showPage('delete')">🗑️ Delete Account</button>
+  </div>
+</nav>
 
-<div class="container">
-  <p class="updated">Last updated: May 1, 2025</p>
+<!-- ════════════════════════════════════════
+     PAGE: PRIVACY POLICY
+════════════════════════════════════════ -->
+<div class="page active" id="page-privacy">
 
-  <div class="card">
-    <h2>Overview</h2>
-    <p>
-      Hisabcha ("we", "our", or "us") is a point-of-sale and inventory management
-      application designed for shopkeepers. We are committed to protecting your
-      privacy. This Privacy Policy explains what information we collect, how we use
-      it, and the choices you have.
-    </p>
+  <div class="hero hero-privacy">
+    <div class="hero-eyebrow">📄 Legal</div>
+    <h1>Privacy Policy</h1>
+    <p>We believe privacy is a right, not a feature. Here's exactly how Hisabcha handles your data.</p>
+    <div class="hero-badge">Last updated: May 1, 2025</div>
   </div>
 
-  <div class="card">
-    <h2>Information We Collect</h2>
-    <p>We collect only the information necessary to provide our services:</p>
-    <ul>
-      <li><strong>Business data:</strong> Product names, inventory counts, prices, and sales records that you enter manually.</li>
-      <li><strong>Device information:</strong> Basic device identifiers for app functionality and crash reporting.</li>
-      <li><strong>Camera access:</strong> Used solely for scanning barcodes and QR codes to add or look up products. No images or video are stored or transmitted.</li>
-    </ul>
-  </div>
+  <div class="content">
 
-  <div class="card">
-    <h2>Camera Permission</h2>
-    <p>
-      Hisabcha requests access to your device's camera for one purpose only:
-    </p>
-    <div class="highlight">
-      📷 <strong>Barcode &amp; QR Code Scanning</strong> — The camera is activated
-      only when you choose to scan a product barcode or SKU. No photos or video
-      recordings are taken, saved, or uploaded at any time.
+    <!-- CTA to delete page -->
+    <div class="cta-banner">
+      <div class="cta-banner-icon">🗑️</div>
+      <div>
+        <h3>Want to delete your account or data?</h3>
+        <p>Submit a request anytime — no need to reinstall the app.</p>
+        <button class="btn-red" onclick="showPage('delete')">Go to Data Deletion Page →</button>
+      </div>
     </div>
-    <p style="margin-top:12px;">
-      You may deny camera permission at any time in your device settings.
-      Barcode scanning will be unavailable, but all other app features will
-      continue to work normally.
-    </p>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon ci-green">📖</div>
+        <h2>Overview</h2>
+      </div>
+      <p>Hisabcha ("we", "our", or "us") is a point-of-sale and inventory management application designed for shopkeepers. We are committed to protecting your privacy. This Policy explains what information we collect, how we use it, and the choices you have — including your right to delete your account and data at any time.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon ci-green">📦</div>
+        <h2>Information We Collect</h2>
+      </div>
+      <p>We collect only what is necessary to provide our services:</p>
+      <ul>
+        <li><strong>Account data:</strong> Name, email address, and password used to create your account.</li>
+        <li><strong>Business data:</strong> Product names, inventory counts, prices, barcodes, and sales records you enter.</li>
+        <li><strong>Device information:</strong> Basic device identifiers used for app functionality and crash reporting.</li>
+        <li><strong>Camera access:</strong> Used solely for barcode and QR code scanning. No images or video are stored or transmitted.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon ci-green">📷</div>
+        <h2>Camera Permission</h2>
+      </div>
+      <p>Hisabcha requests camera access for one purpose only:</p>
+      <div class="callout callout-green">
+        <div class="callout-icon">📷</div>
+        <div><strong>Barcode &amp; QR Code Scanning</strong> — The camera activates only when you choose to scan a product barcode or SKU. No photos or video recordings are taken, saved, or uploaded at any time.</div>
+      </div>
+      <p style="margin-top:12px;">You may deny camera permission at any time in device settings. Barcode scanning will be unavailable but all other features will work normally.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon ci-green">⚙️</div>
+        <h2>How We Use Your Information</h2>
+      </div>
+      <ul>
+        <li>To create and manage your Hisabcha account.</li>
+        <li>To provide and improve inventory and POS features.</li>
+        <li>To save your business data locally on your device.</li>
+        <li>To sync data to secure cloud storage if you enable backup (optional).</li>
+        <li>To diagnose crashes and technical issues.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon ci-blue">🤝</div>
+        <h2>Data Sharing</h2>
+      </div>
+      <p>We do <strong>not</strong> sell, trade, or rent your personal or business information to third parties and do not share it with advertisers. Data may be shared only in limited cases:</p>
+      <ul>
+        <li>With service providers who help us operate the app (e.g. crash analytics), under strict confidentiality agreements.</li>
+        <li>If required by law or to protect the rights and safety of our users.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon ci-blue">🔐</div>
+        <h2>Data Storage &amp; Security</h2>
+      </div>
+      <p>Your inventory and sales data is stored locally on your device by default. Optional cloud backup uses industry-standard encryption in transit and at rest. We implement reasonable technical and organizational measures to protect your data against unauthorized access, loss, or misuse.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon ci-red">🗑️</div>
+        <h2>Account &amp; Data Deletion</h2>
+      </div>
+      <p>You have the right to request deletion of your account and all associated data at any time. When we receive a verified deletion request:</p>
+      <ul>
+        <li>Your account is permanently deleted within <strong>30 days</strong>.</li>
+        <li>All personal data (name, email, password) is removed from our servers.</li>
+        <li>All business data (products, sales, inventory) is permanently erased.</li>
+        <li>Anonymous diagnostic logs are retained up to 90 days for fraud prevention, then fully purged.</li>
+      </ul>
+      <div class="callout callout-green" style="margin-top:14px;">
+        To submit a request, visit our <button onclick="showPage('delete')" style="background:none;border:none;color:var(--green);font-weight:700;cursor:pointer;font-size:14px;padding:0;">Data Deletion page</button> or email <a href="mailto:support@hisabcha.com">support@hisabcha.com</a>.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon ci-green">👤</div>
+        <h2>Children's Privacy</h2>
+      </div>
+      <p>Hisabcha is intended for use by adults (shopkeepers and business owners). We do not knowingly collect data from children under the age of 13. If you believe a child has provided us information, please contact us and we will delete it promptly.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon ci-green">✅</div>
+        <h2>Your Rights</h2>
+      </div>
+      <ul>
+        <li>Access the data stored by the app at any time.</li>
+        <li>Delete your account and all associated data.</li>
+        <li>Request only partial data deletion while keeping your account active.</li>
+        <li>Revoke any device permission (camera, storage) via device settings.</li>
+        <li>Request a copy of your data by contacting us.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon ci-amber">🔄</div>
+        <h2>Changes to This Policy</h2>
+      </div>
+      <p>We may update this Privacy Policy from time to time. When we do, we will update the "Last updated" date at the top of this page. Continued use of the app after changes constitutes your acceptance of the updated policy.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon ci-green">💬</div>
+        <h2>Contact Us</h2>
+      </div>
+      <p>Questions or concerns about this Privacy Policy?</p>
+      <ul style="margin-top:10px;">
+        <li>📧 <a href="mailto:support@hisabcha.com">support@hisabcha.com</a></li>
+        <li>🌐 <a href="https://hisabcha.com" target="_blank">hisabcha.com</a></li>
+      </ul>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /page-privacy -->
+
+
+<!-- ════════════════════════════════════════
+     PAGE: DELETE ACCOUNT
+════════════════════════════════════════ -->
+<div class="page" id="page-delete">
+
+  <div class="hero hero-delete">
+    <div class="hero-eyebrow">🗑️ Data Control</div>
+    <h1>Delete Your Account &amp; Data</h1>
+    <p>You have full control over your data. Submit a deletion request anytime — no need to reinstall the app.</p>
+    <div class="hero-badge">Google Play Compliant · Responds within 48 hours</div>
   </div>
 
-  <div class="card">
-    <h2>How We Use Your Information</h2>
-    <ul>
-      <li>To provide and improve the inventory and POS features of the app.</li>
-      <li>To save your business data locally on your device.</li>
-      <li>To sync data to secure cloud storage if you enable backup (optional).</li>
-      <li>To diagnose crashes and technical issues.</li>
-    </ul>
-  </div>
+  <div class="content">
 
-  <div class="card">
-    <h2>Data Sharing</h2>
-    <p>
-      We do <strong>not</strong> sell, trade, or rent your personal or business
-      information to third parties. We do not share your data with advertisers.
-      Data may be shared only in the following limited cases:
-    </p>
-    <ul>
-      <li>With service providers who help us operate the app (e.g., crash analytics), under strict confidentiality agreements.</li>
-      <li>If required by law or to protect the rights and safety of our users.</li>
-    </ul>
-  </div>
+    <div class="callout callout-blue" style="margin-bottom:16px; border-radius:12px; padding:16px 18px;">
+      <div class="callout-icon">ℹ️</div>
+      <div><strong>Two options available:</strong> Request full account deletion (removes everything), or delete only specific data — such as sales history or product records — while keeping your account active.</div>
+    </div>
 
-  <div class="card">
-    <h2>Data Storage &amp; Security</h2>
-    <p>
-      Your inventory and sales data is stored locally on your device by default.
-      Optional cloud backup uses industry-standard encryption in transit and at
-      rest. We implement reasonable technical and organizational measures to
-      protect your data against unauthorized access, loss, or misuse.
-    </p>
-  </div>
+    <!-- HOW TO REQUEST -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon ci-red">📧</div>
+        <h2>How to Submit a Deletion Request</h2>
+      </div>
+      <p>Send an email to our support team. Please follow these steps so we can verify and process your request quickly:</p>
 
-  <div class="card">
-    <h2>Children's Privacy</h2>
-    <p>
-      Hisabcha is intended for use by adults (shopkeepers and business owners).
-      We do not knowingly collect data from children under the age of 13. If you
-      believe a child has provided us information, please contact us so we can
-      delete it promptly.
-    </p>
-  </div>
+      <div class="steps" style="margin-top:20px;">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <strong>Email from your registered address</strong>
+            <p>Send the request from the email linked to your Hisabcha account so we can verify your identity.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <strong>Use the subject: "Account Deletion Request"</strong>
+            <p>This routes your request to the right team immediately.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <strong>Specify what you want deleted</strong>
+            <p>Full account + all data, or only specific data such as sales history or product list.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <strong>We confirm and process within 30 days</strong>
+            <p>You receive a confirmation when we receive your request, and again when deletion is complete.</p>
+          </div>
+        </div>
+      </div>
 
-  <div class="card">
-    <h2>Your Rights</h2>
-    <p>You have the right to:</p>
-    <ul>
-      <li>Access the data stored by the app at any time.</li>
-      <li>Delete your account and all associated data.</li>
-      <li>Revoke any device permission (camera, storage) via your device settings.</li>
-      <li>Request a copy of your data by contacting us.</li>
-    </ul>
-  </div>
+      <a class="email-cta" href="mailto:support@hisabcha.com?subject=Account%20Deletion%20Request&body=Hello%20Hisabcha%20Support%2C%0A%0AI%20am%20writing%20to%20request%20deletion%20of%20my%20account%20and%2For%20data.%0A%0ARegistered%20email%3A%20%5Byour%20registered%20email%5D%0ARequest%20type%3A%20%5BFull%20account%20deletion%20%2F%20Specific%20data%20only%5D%0AData%20to%20delete%3A%20%5BAll%20data%20%2F%20Sales%20history%20%2F%20Product%20list%20%2F%20Other%5D%0A%0AThank%20you.">
+        <span class="email-cta-icon">✉️</span>
+        Email support@hisabcha.com
+      </a>
+    </div>
 
-  <div class="card">
-    <h2>Changes to This Policy</h2>
-    <p>
-      We may update this Privacy Policy from time to time. When we do, we will
-      update the "Last updated" date at the top of this page. Continued use of
-      the app after changes constitutes acceptance of the updated policy.
-    </p>
-  </div>
+    <!-- WHAT GETS DELETED -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon ci-red">📋</div>
+        <h2>What Data Gets Deleted</h2>
+      </div>
+      <p>Here is exactly what happens to each type of data when your deletion request is processed:</p>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Data Type</th>
+            <th>Action</th>
+            <th>Timeframe</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Account info</strong><span class="data-label">Name, email, password</span></td>
+            <td><span class="badge badge-del">Permanently deleted</span></td>
+            <td>Within 30 days</td>
+          </tr>
+          <tr>
+            <td><strong>Product &amp; inventory data</strong><span class="data-label">Items, quantities, prices, barcodes</span></td>
+            <td><span class="badge badge-del">Permanently deleted</span></td>
+            <td>Within 30 days</td>
+          </tr>
+          <tr>
+            <td><strong>Sales &amp; transaction history</strong><span class="data-label">POS records, receipts</span></td>
+            <td><span class="badge badge-del">Permanently deleted</span></td>
+            <td>Within 30 days</td>
+          </tr>
+          <tr>
+            <td><strong>Cloud backup data</strong><span class="data-label">Any synced data on our servers</span></td>
+            <td><span class="badge badge-del">Permanently deleted</span></td>
+            <td>Within 30 days</td>
+          </tr>
+          <tr>
+            <td><strong>Crash &amp; diagnostic logs</strong><span class="data-label">Anonymous device/error logs</span></td>
+            <td><span class="badge badge-keep">Retained briefly</span></td>
+            <td>Auto-purged within 90 days</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="callout callout-amber" style="margin-top:14px;">
+        <div class="callout-icon">⚠️</div>
+        <div><strong>Note on retained data:</strong> Anonymous crash logs contain no personally identifiable information. They are retained up to 90 days solely for security and fraud prevention, then permanently deleted. This is disclosed per Google Play policy.</div>
+      </div>
+    </div>
 
-  <div class="card">
-    <h2>Contact Us</h2>
-    <p>
-      If you have any questions or concerns about this Privacy Policy, please
-      contact us at:<br/><br/>
-      📧 <a href="mailto:support@hisabcha.com">support@hisabcha.com</a><br/>
-      🌐 <a href="https://hisabcha.com" target="_blank">hisabcha.com</a>
-    </p>
-  </div>
+    <!-- TIMELINE -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon ci-blue">⏱️</div>
+        <h2>What to Expect After You Request</h2>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot">📨</div>
+          <div class="tl-body">
+            <strong>Within 48 hours — Confirmation email</strong>
+            <p>We confirm receipt of your request and verify your identity via your registered email.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">🔄</div>
+          <div class="tl-body">
+            <strong>Within 7 days — Request processed</strong>
+            <p>Your account is deactivated and deletion begins across all our systems.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">✅</div>
+          <div class="tl-body">
+            <strong>Within 30 days — Full deletion complete</strong>
+            <p>All personal and business data permanently removed. Final confirmation email sent.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">🧹</div>
+          <div class="tl-body">
+            <strong>Within 90 days — Diagnostic logs purged</strong>
+            <p>Anonymous crash and diagnostic logs are automatically purged from our systems.</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-</div>
+    <!-- PARTIAL DELETION -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon ci-amber">✂️</div>
+        <h2>Delete Only Specific Data (Keep Your Account)</h2>
+      </div>
+      <p>You don't have to delete your account entirely. You can request deletion of specific data only. The following can be deleted individually:</p>
+      <ul style="margin-top:10px;">
+        <li>Sales and transaction history</li>
+        <li>Product and inventory records</li>
+        <li>Barcode / SKU data</li>
+        <li>Cloud backup data</li>
+      </ul>
+      <p style="margin-top:12px;">To request partial data deletion, email <a href="mailto:support@hisabcha.com?subject=Partial%20Data%20Deletion%20Request">support@hisabcha.com</a> and specify which data you want removed.</p>
+    </div>
 
+    <!-- CONTACT -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon ci-green">💬</div>
+        <h2>Contact &amp; Support</h2>
+      </div>
+      <p>Questions about your data, or want to check the status of a submitted request?</p>
+      <ul style="margin-top:10px;">
+        <li>📧 <a href="mailto:support@hisabcha.com">support@hisabcha.com</a></li>
+        <li>⏱️ Response time: within 48 hours on business days</li>
+      </ul>
+      <p style="margin-top:14px; font-size:13.5px; color:var(--muted);">
+        For full details on how we handle your data, read our
+        <button onclick="showPage('privacy')" style="background:none;border:none;color:var(--green);font-weight:600;cursor:pointer;font-size:13.5px;padding:0;">Privacy Policy</button>.
+      </p>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /page-delete -->
+
+
+<!-- ════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════ -->
 <footer>
-  &copy; 2025 Hisabcha. All rights reserved.
+  &copy; 2025 Hisabcha. All rights reserved. &nbsp;|&nbsp;
+  <button onclick="showPage('privacy')" style="background:none;border:none;color:var(--green);cursor:pointer;font-size:13px;">Privacy Policy</button>
+  &nbsp;|&nbsp;
+  <button onclick="showPage('delete')" style="background:none;border:none;color:var(--green);cursor:pointer;font-size:13px;">Delete Account</button>
 </footer>
+
+
+<script>
+  function showPage(id) {
+    // Switch pages
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + id).classList.add('active');
+
+    // Switch nav tabs
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Re-trigger card animations
+    const cards = document.querySelectorAll('#page-' + id + ' .card, #page-' + id + ' .cta-banner');
+    cards.forEach((c, i) => {
+      c.style.animation = 'none';
+      c.offsetHeight; // reflow
+      c.style.animation = `fadeUp 0.4s ease ${i * 0.05}s both`;
+    });
+  }
+
+  // Handle hash-based routing (useful for direct links)
+  if (window.location.hash === '#delete') showPage('delete');
+</script>
 
 </body>
 </html>
