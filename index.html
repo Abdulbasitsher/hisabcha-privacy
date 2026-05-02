@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Hisabcha – Privacy & Data</title>
+  <title>Delete Your Account & Data – Hisabcha</title>
+  <meta name="description" content="Request deletion of your Hisabcha account and data. Google Play compliant. Responds within 48 hours."/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
   <style>
     :root {
@@ -31,9 +33,7 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
-
     body {
       font-family: 'DM Sans', sans-serif;
       background: var(--bg);
@@ -41,14 +41,11 @@
       min-height: 100vh;
     }
 
-    /* ── SCROLLBAR ── */
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 99px; }
 
-    /* ════════════════════════════════════════
-       NAV
-    ════════════════════════════════════════ */
+    /* NAV */
     nav {
       position: fixed; top: 0; left: 0; right: 0;
       height: var(--nav-h);
@@ -61,7 +58,6 @@
       z-index: 1000;
       gap: 16px;
     }
-
     .nav-brand {
       display: flex; align-items: center; gap: 10px;
       text-decoration: none;
@@ -84,59 +80,30 @@
     }
     .nav-wordmark span { color: var(--green); }
 
-    .nav-tabs {
-      display: flex;
-      background: #f3f4f6;
-      border-radius: 10px;
-      padding: 3px;
-      gap: 2px;
+    .nav-link {
       margin-left: auto;
-    }
-    .nav-tab {
       font-family: 'DM Sans', sans-serif;
       font-size: 13px;
-      font-weight: 500;
-      color: var(--muted);
-      background: transparent;
-      border: none;
-      padding: 7px 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.2s;
-      white-space: nowrap;
-    }
-    .nav-tab:hover { color: var(--ink); }
-    .nav-tab.active {
-      background: var(--surface);
-      color: var(--ink);
       font-weight: 600;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      color: var(--green-dark);
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: background 0.2s;
     }
+    .nav-link:hover { background: var(--green-pale); }
 
-    /* ════════════════════════════════════════
-       PAGES
-    ════════════════════════════════════════ */
-    .page { display: none; padding-top: var(--nav-h); }
-    .page.active { display: block; }
+    /* PAGE */
+    .page { padding-top: var(--nav-h); }
 
-    /* ════════════════════════════════════════
-       HERO
-    ════════════════════════════════════════ */
+    /* HERO */
     .hero {
       position: relative;
       overflow: hidden;
       padding: 72px 28px 64px;
       text-align: center;
-    }
-
-    .hero-privacy {
-      background: linear-gradient(160deg, var(--green-deep) 0%, var(--green-dark) 50%, #1a7a42 100%);
-    }
-    .hero-delete {
       background: linear-gradient(160deg, #7f1d1d 0%, var(--red-dark) 50%, var(--red) 100%);
     }
-
-    /* dot-grid overlay */
     .hero::before {
       content: '';
       position: absolute; inset: 0;
@@ -144,7 +111,6 @@
       background-size: 28px 28px;
       pointer-events: none;
     }
-    /* glow blob */
     .hero::after {
       content: '';
       position: absolute;
@@ -154,13 +120,13 @@
       top: -200px; right: -150px;
       pointer-events: none;
     }
-
     .hero-eyebrow {
       display: inline-flex; align-items: center; gap: 6px;
       font-size: 12px; font-weight: 600;
       letter-spacing: 0.08em; text-transform: uppercase;
       color: rgba(255,255,255,0.65);
       margin-bottom: 16px;
+      position: relative;
     }
     .hero h1 {
       font-family: 'Sora', sans-serif;
@@ -170,6 +136,7 @@
       letter-spacing: -0.5px;
       line-height: 1.15;
       margin-bottom: 14px;
+      position: relative;
     }
     .hero p {
       font-size: 15px;
@@ -177,6 +144,7 @@
       max-width: 500px;
       margin: 0 auto;
       line-height: 1.7;
+      position: relative;
     }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 6px;
@@ -186,20 +154,17 @@
       font-size: 13px; font-weight: 500;
       padding: 6px 14px; border-radius: 99px;
       margin-top: 24px;
+      position: relative;
     }
 
-    /* ════════════════════════════════════════
-       CONTENT AREA
-    ════════════════════════════════════════ */
+    /* CONTENT */
     .content {
       max-width: 780px;
       margin: 0 auto;
       padding: 32px 20px 80px;
     }
 
-    /* ════════════════════════════════════════
-       CARDS
-    ════════════════════════════════════════ */
+    /* CARDS */
     .card {
       background: var(--surface);
       border-radius: var(--radius);
@@ -213,197 +178,239 @@
       from { opacity: 0; transform: translateY(12px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-    .card:nth-child(2)  { animation-delay: 0.05s; }
-    .card:nth-child(3)  { animation-delay: 0.10s; }
-    .card:nth-child(4)  { animation-delay: 0.15s; }
-    .card:nth-child(5)  { animation-delay: 0.20s; }
-    .card:nth-child(6)  { animation-delay: 0.25s; }
-    .card:nth-child(7)  { animation-delay: 0.30s; }
-    .card:nth-child(8)  { animation-delay: 0.35s; }
-    .card:nth-child(9)  { animation-delay: 0.40s; }
-    .card:nth-child(10) { animation-delay: 0.45s; }
+    .card:nth-child(2) { animation-delay: 0.05s; }
+    .card:nth-child(3) { animation-delay: 0.10s; }
+    .card:nth-child(4) { animation-delay: 0.15s; }
+    .card:nth-child(5) { animation-delay: 0.20s; }
+    .card:nth-child(6) { animation-delay: 0.25s; }
 
     .card-head {
-      display: flex; align-items: center; gap: 12px;
+      display: flex; align-items: center; gap: 14px;
       margin-bottom: 14px;
     }
     .card-icon {
-      width: 38px; height: 38px; border-radius: 10px;
+      width: 40px; height: 40px;
+      border-radius: 10px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 19px; flex-shrink: 0;
+      font-size: 19px;
+      flex-shrink: 0;
     }
-    .ci-green  { background: var(--green-pale); }
-    .ci-red    { background: var(--red-pale); }
-    .ci-amber  { background: var(--amber-pale); }
-    .ci-blue   { background: var(--blue-pale); }
+    .ci-red   { background: var(--red-pale); color: var(--red-dark); }
+    .ci-blue  { background: var(--blue-pale); color: var(--blue); }
+    .ci-amber { background: var(--amber-pale); color: var(--amber); }
+    .ci-green { background: var(--green-pale); color: var(--green-dark); }
 
     .card h2 {
       font-family: 'Sora', sans-serif;
-      font-size: 15px; font-weight: 700;
+      font-size: 19px;
+      font-weight: 700;
       color: var(--ink);
+      letter-spacing: -0.2px;
     }
-
-    p, li {
+    .card p {
       font-size: 14.5px;
-      line-height: 1.8;
-      color: #374151;
-    }
-    ul { padding-left: 20px; margin-top: 8px; }
-    li { margin-bottom: 5px; }
-    strong { color: var(--ink); }
-    a { color: var(--green); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-
-    /* ════════════════════════════════════════
-       CALLOUT BOXES
-    ════════════════════════════════════════ */
-    .callout {
-      border-radius: 10px;
-      padding: 14px 16px;
-      font-size: 14px;
       line-height: 1.7;
-      display: flex; gap: 10px; align-items: flex-start;
-      margin-top: 12px;
+      color: #374151;
+      margin-bottom: 10px;
     }
-    .callout-icon { font-size: 17px; flex-shrink: 0; margin-top: 1px; }
-    .callout-green  { background: var(--green-pale); border: 1px solid #bbf7d0; color: #166534; }
-    .callout-amber  { background: var(--amber-pale); border: 1px solid #fde68a; color: #78350f; }
-    .callout-blue   { background: var(--blue-pale);  border: 1px solid #bfdbfe; color: #1e40af; }
-    .callout-red    { background: var(--red-pale);   border: 1px solid #fecaca; color: #991b1b; }
-
-    /* ════════════════════════════════════════
-       CTA BANNER (privacy → delete)
-    ════════════════════════════════════════ */
-    .cta-banner {
-      background: linear-gradient(135deg, #fef2f2 0%, #fff5f5 100%);
-      border: 1px solid #fecaca;
-      border-radius: var(--radius);
-      padding: 22px 26px;
-      display: flex; align-items: center; gap: 18px;
-      margin-bottom: 16px;
-      animation: fadeUp 0.4s ease both;
+    .card ul {
+      padding-left: 20px;
+      margin: 8px 0;
     }
-    .cta-banner-icon { font-size: 38px; flex-shrink: 0; }
-    .cta-banner h3 {
-      font-family: 'Sora', sans-serif;
-      font-size: 15px; font-weight: 700; color: var(--red);
+    .card li {
+      font-size: 14.5px;
+      line-height: 1.75;
+      color: #374151;
       margin-bottom: 4px;
     }
-    .cta-banner p  { font-size: 13.5px; color: var(--muted); margin-bottom: 10px; }
-    .btn-red {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: var(--red); color: #fff;
-      padding: 9px 18px; border-radius: 8px;
-      font-size: 13.5px; font-weight: 600;
-      text-decoration: none; border: none; cursor: pointer;
-      transition: background 0.2s, transform 0.15s;
-    }
-    .btn-red:hover { background: var(--red-dark); transform: translateY(-1px); text-decoration: none; }
+    .card a { color: var(--green-dark); font-weight: 600; }
 
-    /* ════════════════════════════════════════
-       STEPS
-    ════════════════════════════════════════ */
-    .steps { display: flex; flex-direction: column; gap: 14px; margin-top: 6px; }
-    .step { display: flex; gap: 14px; align-items: flex-start; }
+    /* CALLOUT */
+    .callout {
+      display: flex;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      margin: 12px 0;
+    }
+    .callout-icon {
+      flex-shrink: 0;
+      font-size: 18px;
+      line-height: 1;
+      padding-top: 2px;
+    }
+    .callout-amber {
+      background: var(--amber-pale);
+      border-color: #fde68a;
+    }
+    .callout-amber strong { color: #92400e; }
+    .callout-blue {
+      background: var(--blue-pale);
+      border-color: #bfdbfe;
+    }
+    .callout-blue strong { color: #1e3a8a; }
+    .callout-green {
+      background: var(--green-pale);
+      border-color: var(--green-light);
+    }
+    .callout-green strong { color: var(--green-deep); }
+    .callout > div:last-child {
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    /* STEPS */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .step {
+      display: flex;
+      gap: 14px;
+      padding: 14px;
+      background: var(--bg);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
     .step-num {
+      flex-shrink: 0;
       width: 28px; height: 28px;
-      background: var(--red); color: #fff;
       border-radius: 50%;
-      font-family: 'Sora', sans-serif;
-      font-weight: 700; font-size: 13px;
+      background: var(--red);
+      color: #fff;
+      font-weight: 700;
+      font-size: 13px;
       display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; margin-top: 2px;
     }
-    .step-body strong { display: block; font-size: 14.5px; color: var(--ink); margin-bottom: 2px; }
-    .step-body p { font-size: 13.5px; color: var(--muted); margin: 0; }
+    .step-body strong {
+      display: block;
+      font-size: 14.5px;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .step-body p {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0;
+    }
 
-    /* ════════════════════════════════════════
-       EMAIL BUTTON
-    ════════════════════════════════════════ */
+    /* EMAIL CTA */
     .email-cta {
-      display: flex; align-items: center; gap: 12px;
-      background: var(--red); color: #fff;
-      padding: 15px 22px; border-radius: 12px;
-      text-decoration: none; font-weight: 600; font-size: 14.5px;
-      margin-top: 22px; width: fit-content;
-      transition: background 0.2s, transform 0.15s;
-      box-shadow: 0 4px 12px rgba(220,38,38,0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%);
+      color: #fff;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 14px 22px;
+      border-radius: 12px;
+      text-decoration: none;
+      margin-top: 18px;
+      box-shadow: 0 4px 12px rgba(220,38,38,0.25);
+      transition: transform 0.15s, box-shadow 0.15s;
     }
-    .email-cta:hover { background: var(--red-dark); transform: translateY(-2px); text-decoration: none; }
-    .email-cta-icon { font-size: 22px; }
+    .email-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(220,38,38,0.35);
+    }
+    .email-cta-icon { font-size: 16px; }
 
-    /* ════════════════════════════════════════
-       DATA TABLE
-    ════════════════════════════════════════ */
+    /* TABLE */
     .data-table {
-      width: 100%; border-collapse: collapse;
-      margin-top: 14px; font-size: 13.5px;
-      border-radius: 10px; overflow: hidden;
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+      font-size: 14px;
     }
     .data-table th {
-      background: #f9fafb; text-align: left;
-      padding: 10px 14px; font-weight: 600;
-      color: var(--muted); font-size: 12px;
-      text-transform: uppercase; letter-spacing: 0.04em;
+      text-align: left;
+      padding: 10px 12px;
+      background: #f3f4f6;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
       border-bottom: 1px solid var(--border);
     }
     .data-table td {
-      padding: 11px 14px;
-      border-bottom: 1px solid #f3f4f6;
-      vertical-align: top; color: #374151;
+      padding: 12px;
+      border-bottom: 1px solid var(--border);
+      color: #374151;
+      vertical-align: top;
     }
     .data-table tr:last-child td { border-bottom: none; }
-    .data-table tr:hover td { background: #fafafa; }
-    .badge {
-      display: inline-block; padding: 3px 10px;
-      border-radius: 99px; font-size: 11.5px; font-weight: 600;
+    .data-label {
+      display: block;
+      font-size: 12.5px;
+      color: var(--muted);
+      margin-top: 2px;
     }
-    .badge-del  { background: #fee2e2; color: var(--red); }
-    .badge-keep { background: #fef3c7; color: #92400e; }
-    .data-label { color: var(--muted); font-size: 12px; display: block; margin-top: 1px; }
+    .badge {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 99px;
+      white-space: nowrap;
+    }
+    .badge-del { background: var(--red-pale); color: var(--red-dark); }
+    .badge-keep { background: var(--amber-pale); color: var(--amber); }
 
-    /* ════════════════════════════════════════
-       TIMELINE
-    ════════════════════════════════════════ */
-    .timeline { display: flex; flex-direction: column; margin-top: 8px; }
-    .tl-item { display: flex; gap: 14px; position: relative; }
-    .tl-item:not(:last-child)::before {
-      content: '';
-      position: absolute; left: 13px; top: 30px;
-      width: 2px; height: calc(100% - 6px);
-      background: var(--border);
+    /* TIMELINE */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 8px;
+    }
+    .tl-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
     }
     .tl-dot {
-      width: 28px; height: 28px; border-radius: 50%;
-      background: #f3f4f6; border: 2px solid var(--border);
+      flex-shrink: 0;
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: var(--blue-pale);
       display: flex; align-items: center; justify-content: center;
-      font-size: 13px; flex-shrink: 0; z-index: 1;
+      font-size: 16px;
     }
-    .tl-body { padding-bottom: 20px; }
-    .tl-body strong { display: block; font-size: 14px; font-weight: 700; color: var(--ink); }
-    .tl-body p { font-size: 13px; color: var(--muted); margin-top: 2px; }
+    .tl-body strong {
+      display: block;
+      font-size: 14.5px;
+      color: var(--ink);
+      margin-bottom: 3px;
+    }
+    .tl-body p {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0;
+    }
 
-    /* ════════════════════════════════════════
-       FOOTER
-    ════════════════════════════════════════ */
+    /* FOOTER */
     footer {
-      text-align: center; font-size: 13px;
-      color: var(--muted); padding: 24px 20px;
+      padding: 28px 20px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
       border-top: 1px solid var(--border);
       background: var(--surface);
     }
-    footer a { color: var(--green); }
+    footer a { color: var(--green-dark); text-decoration: none; font-weight: 500; }
+    footer a:hover { text-decoration: underline; }
 
-    /* ════════════════════════════════════════
-       RESPONSIVE
-    ════════════════════════════════════════ */
     @media (max-width: 600px) {
       nav { padding: 0 16px; }
       .nav-wordmark { display: none; }
       .hero { padding: 52px 20px 44px; }
       .card { padding: 20px 18px; }
-      .cta-banner { flex-direction: column; gap: 12px; }
-      .cta-banner-icon { display: none; }
       .data-table th:last-child,
       .data-table td:last-child { display: none; }
       .email-cta { font-size: 13px; padding: 13px 18px; width: 100%; justify-content: center; }
@@ -412,182 +419,19 @@
 </head>
 <body>
 
-<!-- ════════════════════════════════════════
-     NAV
-════════════════════════════════════════ -->
+<!-- NAV -->
 <nav>
-  <a class="nav-brand" href="#" onclick="showPage('privacy')">
+  <a class="nav-brand" href="https://hisabcha.com">
     <div class="nav-logo">🌿</div>
     <span class="nav-wordmark">Hisab<span>cha</span></span>
   </a>
-  <div class="nav-tabs">
-    <button class="nav-tab active" id="tab-privacy" onclick="showPage('privacy')">🔒 Privacy Policy</button>
-    <button class="nav-tab"        id="tab-delete"  onclick="showPage('delete')">🗑️ Delete Account</button>
-  </div>
+  <a class="nav-link" href="https://docs.google.com/document/d/1DCd2GUlS5kw9ewUSanPgk5Hvcn1faUSM/edit?usp=sharing&ouid=100918688015931686375&rtpof=true&sd=true">Privacy Policy</a>
 </nav>
 
-<!-- ════════════════════════════════════════
-     PAGE: PRIVACY POLICY
-════════════════════════════════════════ -->
-<div class="page active" id="page-privacy">
+<div class="page">
 
-  <div class="hero hero-privacy">
-    <div class="hero-eyebrow">📄 Legal</div>
-    <h1>Privacy Policy</h1>
-    <p>We believe privacy is a right, not a feature. Here's exactly how Hisabcha handles your data.</p>
-    <div class="hero-badge">Last updated: May 1, 2025</div>
-  </div>
-
-  <div class="content">
-
-    <!-- CTA to delete page -->
-    <div class="cta-banner">
-      <div class="cta-banner-icon">🗑️</div>
-      <div>
-        <h3>Want to delete your account or data?</h3>
-        <p>Submit a request anytime — no need to reinstall the app.</p>
-        <button class="btn-red" onclick="showPage('delete')">Go to Data Deletion Page →</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-head">
-        <div class="card-icon ci-green">📖</div>
-        <h2>Overview</h2>
-      </div>
-      <p>Hisabcha ("we", "our", or "us") is a point-of-sale and inventory management application designed for shopkeepers. We are committed to protecting your privacy. This Policy explains what information we collect, how we use it, and the choices you have — including your right to delete your account and data at any time.</p>
-    </div>
-
-    <div class="card">
-      <div class="card-head">
-        <div class="card-icon ci-green">📦</div>
-        <h2>Information We Collect</h2>
-      </div>
-      <p>We collect only what is necessary to provide our services:</p>
-      <ul>
-        <li><strong>Account data:</strong> Name, email address, and password used to create your account.</li>
-        <li><strong>Business data:</strong> Product names, inventory counts, prices, barcodes, and sales records you enter.</li>
-        <li><strong>Device information:</strong> Basic device identifiers used for app functionality and crash reporting.</li>
-        <li><strong>Camera access:</strong> Used solely for barcode and QR code scanning. No images or video are stored or transmitted.</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <div class="card-head">
-        <div class="card-icon ci-green">📷</div>
-        <h2>Camera Permission</h2>
-      </div>
-      <p>Hisabcha requests camera access for one purpose only:</p>
-      <div class="callout callout-green">
-        <div class="callout-icon">📷</div>
-        <div><strong>Barcode &amp; QR Code Scanning</strong> — The camera activates only when you choose to scan a product barcode or SKU. No photos or video recordings are taken, saved, or uploaded at any time.</div>
-      </div>
-      <p style="margin-top:12px;">You may deny camera permission at any time in device settings. Barcode scanning will be unavailable but all other features will work normally.</p>
-    </div>
-
-    <div class="card">
-      <div class="card-head">
-        <div class="card-icon ci-green">⚙️</div>
-        <h2>How We Use Your Information</h2>
-      </div>
-      <ul>
-        <li>To create and manage your Hisabcha account.</li>
-        <li>To provide and improve inventory and POS features.</li>
-        <li>To save your business data locally on your device.</li>
-        <li>To sync data to secure cloud storage if you enable backup (optional).</li>
-        <li>To diagnose crashes and technical issues.</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <div class="card-head">
-        <div class="card-icon ci-blue">🤝</div>
-        <h2>Data Sharing</h2>
-      </div>
-      <p>We do <strong>not</strong> sell, trade, or rent your personal or business information to third parties and do not share it with advertisers. Data may be shared only in limited cases:</p>
-      <ul>
-        <li>With service providers who help us operate the app (e.g. crash analytics), under strict confidentiality agreements.</li>
-        <li>If required by law or to protect the rights and safety of our users.</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <div class="card-head">
-        <div class="card-icon ci-blue">🔐</div>
-        <h2>Data Storage &amp; Security</h2>
-      </div>
-      <p>Your inventory and sales data is stored locally on your device by default. Optional cloud backup uses industry-standard encryption in transit and at rest. We implement reasonable technical and organizational measures to protect your data against unauthorized access, loss, or misuse.</p>
-    </div>
-
-    <div class="card">
-      <div class="card-head">
-        <div class="card-icon ci-red">🗑️</div>
-        <h2>Account &amp; Data Deletion</h2>
-      </div>
-      <p>You have the right to request deletion of your account and all associated data at any time. When we receive a verified deletion request:</p>
-      <ul>
-        <li>Your account is permanently deleted within <strong>30 days</strong>.</li>
-        <li>All personal data (name, email, password) is removed from our servers.</li>
-        <li>All business data (products, sales, inventory) is permanently erased.</li>
-        <li>Anonymous diagnostic logs are retained up to 90 days for fraud prevention, then fully purged.</li>
-      </ul>
-      <div class="callout callout-green" style="margin-top:14px;">
-        To submit a request, visit our <button onclick="showPage('delete')" style="background:none;border:none;color:var(--green);font-weight:700;cursor:pointer;font-size:14px;padding:0;">Data Deletion page</button> or email <a href="mailto:support@hisabcha.com">support@hisabcha.com</a>.
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-head">
-        <div class="card-icon ci-green">👤</div>
-        <h2>Children's Privacy</h2>
-      </div>
-      <p>Hisabcha is intended for use by adults (shopkeepers and business owners). We do not knowingly collect data from children under the age of 13. If you believe a child has provided us information, please contact us and we will delete it promptly.</p>
-    </div>
-
-    <div class="card">
-      <div class="card-head">
-        <div class="card-icon ci-green">✅</div>
-        <h2>Your Rights</h2>
-      </div>
-      <ul>
-        <li>Access the data stored by the app at any time.</li>
-        <li>Delete your account and all associated data.</li>
-        <li>Request only partial data deletion while keeping your account active.</li>
-        <li>Revoke any device permission (camera, storage) via device settings.</li>
-        <li>Request a copy of your data by contacting us.</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <div class="card-head">
-        <div class="card-icon ci-amber">🔄</div>
-        <h2>Changes to This Policy</h2>
-      </div>
-      <p>We may update this Privacy Policy from time to time. When we do, we will update the "Last updated" date at the top of this page. Continued use of the app after changes constitutes your acceptance of the updated policy.</p>
-    </div>
-
-    <div class="card">
-      <div class="card-head">
-        <div class="card-icon ci-green">💬</div>
-        <h2>Contact Us</h2>
-      </div>
-      <p>Questions or concerns about this Privacy Policy?</p>
-      <ul style="margin-top:10px;">
-        <li>📧 <a href="mailto:support@hisabcha.com">support@hisabcha.com</a></li>
-        <li>🌐 <a href="https://hisabcha.com" target="_blank">hisabcha.com</a></li>
-      </ul>
-    </div>
-
-  </div><!-- /content -->
-</div><!-- /page-privacy -->
-
-
-<!-- ════════════════════════════════════════
-     PAGE: DELETE ACCOUNT
-════════════════════════════════════════ -->
-<div class="page" id="page-delete">
-
-  <div class="hero hero-delete">
+  <!-- HERO -->
+  <div class="hero">
     <div class="hero-eyebrow">🗑️ Data Control</div>
     <h1>Delete Your Account &amp; Data</h1>
     <p>You have full control over your data. Submit a deletion request anytime — no need to reinstall the app.</p>
@@ -762,50 +606,13 @@
       </ul>
       <p style="margin-top:14px; font-size:13.5px; color:var(--muted);">
         For full details on how we handle your data, read our
-        <button onclick="showPage('privacy')" style="background:none;border:none;color:var(--green);font-weight:600;cursor:pointer;font-size:13.5px;padding:0;">Privacy Policy</button>.
+        <a href="https://docs.google.com/document/d/1DCd2GUlS5kw9ewUSanPgk5Hvcn1faUSM/edit?usp=sharing&ouid=100918688015931686375&rtpof=true&sd=true">Privacy Policy</a>.
       </p>
     </div>
 
-  </div><!-- /content -->
-</div><!-- /page-delete -->
+  </div>
+</div>
 
-
-<!-- ════════════════════════════════════════
-     FOOTER
-════════════════════════════════════════ -->
+<!-- FOOTER -->
 <footer>
-  &copy; 2025 Hisabcha. All rights reserved. &nbsp;|&nbsp;
-  <button onclick="showPage('privacy')" style="background:none;border:none;color:var(--green);cursor:pointer;font-size:13px;">Privacy Policy</button>
-  &nbsp;|&nbsp;
-  <button onclick="showPage('delete')" style="background:none;border:none;color:var(--green);cursor:pointer;font-size:13px;">Delete Account</button>
-</footer>
-
-
-<script>
-  function showPage(id) {
-    // Switch pages
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.getElementById('page-' + id).classList.add('active');
-
-    // Switch nav tabs
-    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-    document.getElementById('tab-' + id).classList.add('active');
-
-    // Scroll to top
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    // Re-trigger card animations
-    const cards = document.querySelectorAll('#page-' + id + ' .card, #page-' + id + ' .cta-banner');
-    cards.forEach((c, i) => {
-      c.style.animation = 'none';
-      c.offsetHeight; // reflow
-      c.style.animation = `fadeUp 0.4s ease ${i * 0.05}s both`;
-    });
-  }
-
-  // Handle hash-based routing (useful for direct links)
-  if (window.location.hash === '#delete') showPage('delete');
-</script>
-
-</body>
-</html>
+  &cop
